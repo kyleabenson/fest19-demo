@@ -1,0 +1,17 @@
+---
+- name: Install required NodeJS packages
+  yum:
+    name:
+      - npm
+      - nodejs
+    state: present
+
+- name: Install required npm packages
+  npm:
+    name: "{{ item }}"
+    state: present
+    global: yes
+  with_items:
+    - yarn
+    - express
+    - react-create-app
