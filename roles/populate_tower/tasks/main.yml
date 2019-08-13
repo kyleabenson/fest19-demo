@@ -1,0 +1,201 @@
+---
+#ORGS
+- name: CREATE AnsibleFest ORGANIZATION
+  tower_organization:
+    name: "AnsibleFest demo organization"
+    description: "AnsibleFest demo organization"
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+#TEAMS
+- name: CREATE NETWORK TEAM
+  tower_team:
+    name: "Network"
+    description: "Network Ops Team"
+    organization: "AnsibleFest demo organization"
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: CREATE SYSOPS TEAM
+  tower_team:
+    name: "Sysops"
+    description: "Sysops Team"
+    organization: "AnsibleFest demo organization"
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: CREATE DB/MW TEAM
+  tower_team:
+    name: "Database/Middleware"
+    description: "Database/Middleware Team"
+    organization: "AnsibleFest demo organization"
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: CREATE FRONTEND TEAM
+  tower_team:
+    name: "Frontend"
+    description: "Frontend Dev Team"
+    organization: "AnsibleFest demo organization"
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+#USERS
+- name: ADD USER PETER
+  tower_user:
+    username: peter 
+    password: "{{ admin_password }}"
+    email: psprygad@redhat.com
+    first_name: Peter
+    last_name: Sprygada
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: ADD USER KYLE
+  tower_user:
+    username: kyle
+    password: "{{ admin_password }}"
+    email: kbenson@redhat.com
+    first_name: Kyle
+    last_name: Benson
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: ADD USER COLIN
+  tower_user:
+    username: colin
+    password: "{{ admin_password }}"
+    email: colin@redhat.com
+    first_name: Colin
+    last_name: McNaughton
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: ADD USER BRIAN
+  tower_user:
+    username: brian
+    password: "{{ admin_password }}"
+    email: bcoursen@redhat.com
+    first_name: Brian
+    last_name: Coursen
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+
+#PROJECT
+# this displays warning, documented here: https://github.com/ansible/ansible/issues/60327
+#- name: ADD REPO INTO TOWER
+#  tower_project:
+#    name: "Workshop Project"
+#    organization: "AnsibleFest demo organization"
+#    scm_type: git
+#    scm_url: "https://github.com/network-automation/tower_workshop"
+#    tower_username: admin
+#    tower_password: "{{ admin_password }}"
+#    tower_host: "{{ ansible_host }}"
+#    tower_verify_ssl: no
+#
+##PERMISSIONS
+- name: ENSURE THAT PETER BELONGS TO THE ANSIBLEFEST ORG
+  tower_role:
+    user: peter 
+    organization: "AnsibleFest demo organization"
+    role: member
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT KYLE BELONGS TO THE ANSIBLEFEST ORG
+  tower_role:
+    user: kyle 
+    organization: "AnsibleFest demo organization"
+    role: member
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT KYLE BELONGS TO THE FRONTEND TEAM
+  tower_role:
+    user: kyle 
+    role: member
+    state: present
+    target_team: Frontend
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT COLIN BELONGS TO THE ANSIBLEFEST ORG
+  tower_role:
+    user: colin 
+    organization: "AnsibleFest demo organization"
+    role: member
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT COLIN BELONGS TO THE SYSOPS TEAM
+  tower_role:
+    user: colin 
+    role: member
+    state: present
+    target_team: Sysops
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT BRIAN BELONGS TO THE ANSIBLEFEST ORG
+  tower_role:
+    user: brian 
+    organization: "AnsibleFest demo organization"
+    role: member
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT BRIAN BELONGS TO THE NETWORK TEAM
+  tower_role:
+    user: brian 
+    role: member
+    state: present
+    target_team: Network
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no

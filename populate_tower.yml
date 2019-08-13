@@ -1,0 +1,6 @@
+---
+- name: Populate Tower
+  hosts:
+    control
+  roles:
+    - populate_tower
