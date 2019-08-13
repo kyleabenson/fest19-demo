@@ -108,20 +108,6 @@
     tower_host: "{{ ansible_host }}"
     tower_verify_ssl: no
 
-
-#PROJECT
-# this displays warning, documented here: https://github.com/ansible/ansible/issues/60327
-#- name: ADD REPO INTO TOWER
-#  tower_project:
-#    name: "Workshop Project"
-#    organization: "AnsibleFest demo organization"
-#    scm_type: git
-#    scm_url: "https://github.com/network-automation/tower_workshop"
-#    tower_username: admin
-#    tower_password: "{{ admin_password }}"
-#    tower_host: "{{ ansible_host }}"
-#    tower_verify_ssl: no
-#
 ##PERMISSIONS
 - name: ENSURE THAT PETER BELONGS TO THE ANSIBLEFEST ORG
   tower_role:
