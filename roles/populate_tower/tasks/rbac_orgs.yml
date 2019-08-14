@@ -8,3 +8,12 @@
     tower_password: "{{ admin_password }}"
     tower_host: "{{ ansible_host }}"
     tower_verify_ssl: no
+    
+- name: REMOVE DEFAULT ORGANIZATION
+  tower_organization:
+    name: "Default"
+    state: absent
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
