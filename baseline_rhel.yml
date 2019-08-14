@@ -1,10 +1,11 @@
 ---
 - hosts: all
-
-  roles:
-    - common
-
-- hosts: web
-
-  roles:
-    - web
+  become: yes
+  vars: 
+    - web_deploy: true
+  tasks: 
+    - include_role:
+       name: common
+    - include_role: 
+       name: web
+      when: web_deploy == true

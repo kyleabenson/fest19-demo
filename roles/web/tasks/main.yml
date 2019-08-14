@@ -1,17 +1,40 @@
 ---
-- name: Install required NodeJS packages
+- name: Install NodeJS and HTTPD packages
   yum:
     name:
       - npm
       - nodejs
+      - httpd
     state: present
 
-- name: Install required npm packages
-  npm:
-    name: "{{ item }}"
-    state: present
-    global: yes
-  with_items:
-    - yarn
-    - express
-    - react-create-app
+- name: Clone web app git repo to location
+  git:
+    repo: https://github.com/kyleabenson/frontendDemo.git
+    dest: /home/ec2-user/frontendDemo
+    force: yes
+
+- name: Install node dependencies
+  command: npm install
+  args:
+    chdir: /home/ec2-user/frontendDemo
+
+- name: Build production binaries
+  command: npm run build
+  args:
+    chdir: /home/ec2-user/frontendDemo
+
+- name: Move build server to html directory
+  copy:
+    remote_src: true
+    src: /home/ec2-user/frontendDemo/build/
+    dest: /var/www/html/
+    owner: apache
+    group: apache
+  notify: 
+    - restart httpd
+
+- name: Start apache service
+  service:
+    name: httpd
+    state: started
+  
