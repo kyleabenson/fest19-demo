@@ -1,0 +1,9 @@
+---
+- name: Create Azure Infrastructure
+  hosts: localhost
+  connection: local
+  vars:
+    azure_infra_build: true
+
+  roles:
+    - azure

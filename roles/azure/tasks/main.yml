@@ -1,0 +1,8 @@
+---
+- name: Create Azure Infrastructure
+  include_tasks: azure_infra.yml
+  when: azure_infra_build is defined and azure_infra_build == true
+
+- name: CSpinup VM in Azure
+  include_tasks: azure_spinup.yml
+  when: azure_spinup is defined and azure_spinup == true

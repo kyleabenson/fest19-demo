@@ -1,0 +1,14 @@
+---
+azure_resource_group: myResourceGroup
+azure_location: westus
+azure_vnet_name: myVnet
+azure_subnet_range: "10.0.0.0/16"
+azure_subnet_name: mySubnet
+azure_subnet_mask: "10.0.1.0/24"
+azure_public_ip_name: myPublicIP
+azure_security_group: myNetworkSecurityGroup
+azure_nic_name: myNIC
+azure_vm_name: myVM
+azure_vm_size: "Standard_DS1_v2"
+azure_admin: azureuser
+public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLInFqLwLNTWJMpiKa3KHu6UiJ7kIppj+29f4mMkO4PsQ+gD6zH/UPzTyGdR/TwLWocxS6K8w+qKCWhzU8kcUxOpm+YqrGwJqNQy6LLp3gNFAklRDJskYNHOJ8Oo1jf+OPfkVsp+Gc5StiUrOmWQRfznLRiEeCVkw7JIVCutwzHXjh+3dt3Kj+2nRSLhxUNQmLvuGOONSZzFSPEaoicg+X6A/gFK3Cw9InoJnJHmW5oURqgxPFSnqAC7nA9Xwvw70eijWhtTZsATNrzRnZU3xuqRTc/jGfqGg3dtDVmLGMfKUozGILo6KXWX9Uo1kRGUb5FIEH3DXaMz8MMaPI4MgJ"

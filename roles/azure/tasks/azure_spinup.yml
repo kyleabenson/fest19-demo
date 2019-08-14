@@ -1,0 +1,17 @@
+---
+- name: Create VM
+  azure_rm_virtualmachine:
+    resource_group: "{{ azure_resource_group }}"
+    name: "{{ azure_vm_name }}"
+    vm_size: "{{ azure_vm_size }}"
+    admin_username: "{{ azure_admin }}"
+    ssh_password_enabled: false
+    ssh_public_keys:
+      - path: /home/azureuser/.ssh/authorized_keys
+        key_data: "{{ public_key }}"
+    network_interfaces: "{{ azure_nic_name }}"
+    image:
+      offer: CentOS
+      publisher: OpenLogic
+      sku: '7.5'
+      version: latest
