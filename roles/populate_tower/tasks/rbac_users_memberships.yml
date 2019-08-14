@@ -1,0 +1,78 @@
+---
+##PERMISSIONS
+- name: ENSURE THAT PETER BELONGS TO THE ANSIBLEFEST ORG
+  tower_role:
+    user: peter 
+    organization: "AnsibleFest demo organization"
+    role: member
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT KYLE BELONGS TO THE ANSIBLEFEST ORG
+  tower_role:
+    user: kyle 
+    organization: "AnsibleFest demo organization"
+    role: member
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT KYLE BELONGS TO THE FRONTEND TEAM
+  tower_role:
+    user: kyle 
+    role: member
+    state: present
+    target_team: Frontend
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT COLIN BELONGS TO THE ANSIBLEFEST ORG
+  tower_role:
+    user: colin 
+    organization: "AnsibleFest demo organization"
+    role: member
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT COLIN BELONGS TO THE SYSOPS TEAM
+  tower_role:
+    user: colin 
+    role: member
+    state: present
+    target_team: Sysops
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT BRIAN BELONGS TO THE ANSIBLEFEST ORG
+  tower_role:
+    user: brian 
+    organization: "AnsibleFest demo organization"
+    role: member
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no
+
+- name: ENSURE THAT BRIAN BELONGS TO THE NETWORK TEAM
+  tower_role:
+    user: brian 
+    role: member
+    state: present
+    target_team: Network
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    validate_certs: no

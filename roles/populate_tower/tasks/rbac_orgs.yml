@@ -1,0 +1,10 @@
+---
+- name: CREATE AnsibleFest ORGANIZATION
+  tower_organization:
+    name: "AnsibleFest demo organization"
+    description: "AnsibleFest demo organization"
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
