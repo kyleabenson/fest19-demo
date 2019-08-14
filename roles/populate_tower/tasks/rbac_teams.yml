@@ -1,0 +1,44 @@
+---
+- name: CREATE NETWORK TEAM
+  tower_team:
+    name: "Network"
+    description: "Network Ops Team"
+    organization: "AnsibleFest demo organization"
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: CREATE SYSOPS TEAM
+  tower_team:
+    name: "Sysops"
+    description: "Sysops Team"
+    organization: "AnsibleFest demo organization"
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: CREATE DB/MW TEAM
+  tower_team:
+    name: "Database/Middleware"
+    description: "Database/Middleware Team"
+    organization: "AnsibleFest demo organization"
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: CREATE FRONTEND TEAM
+  tower_team:
+    name: "Frontend"
+    description: "Frontend Dev Team"
+    organization: "AnsibleFest demo organization"
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no

@@ -1,0 +1,54 @@
+---
+#USERS
+- name: ADD USER PETER
+  tower_user:
+    username: peter 
+    password: "{{ admin_password }}"
+    email: psprygad@redhat.com
+    first_name: Peter
+    last_name: Sprygada
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: ADD USER KYLE
+  tower_user:
+    username: kyle
+    password: "{{ admin_password }}"
+    email: kbenson@redhat.com
+    first_name: Kyle
+    last_name: Benson
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: ADD USER COLIN
+  tower_user:
+    username: colin
+    password: "{{ admin_password }}"
+    email: colin@redhat.com
+    first_name: Colin
+    last_name: McNaughton
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
+- name: ADD USER BRIAN
+  tower_user:
+    username: brian
+    password: "{{ admin_password }}"
+    email: bcoursen@redhat.com
+    first_name: Brian
+    last_name: Coursen
+    state: present
+    tower_username: admin
+    tower_password: "{{ admin_password }}"
+    tower_host: "{{ ansible_host }}"
+    tower_verify_ssl: no
+
