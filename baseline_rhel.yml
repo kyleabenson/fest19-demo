@@ -2,7 +2,7 @@
 - hosts: all
   become: yes
   vars: 
-    - web_deploy: false
+    - web_deploy: true
     - mw_deploy: false
   tasks: 
     - include_role:

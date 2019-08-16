@@ -1,0 +1,14 @@
+---
+- rds:
+    command: create
+    instance_name: "fest-db-{{ansible_date_time.date }}"
+    db_engine: MySQL
+    size: 10
+    instance_type: db.m1.small
+    username: mysql_admin
+    password: {{ db_pass }}
+    tags:
+      Environment: testing
+      Application: cms
+    publicly_accessible: yes
+    
