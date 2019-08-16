@@ -3,6 +3,10 @@
   include_tasks: azure_infra.yml
   when: azure_infra_build is defined and azure_infra_build == true
 
-- name: CSpinup VM in Azure
+- name: Spinup VM in Azure
   include_tasks: azure_spinup.yml
   when: azure_spinup is defined and azure_spinup == true
+
+- name: Remove Azure Instance
+  include_tasks: azure_vm_remove.yml
+  when: azure_vm_remove is defined and azure_vm_remove == true

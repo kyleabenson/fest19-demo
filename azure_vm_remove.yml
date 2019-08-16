@@ -1,0 +1,9 @@
+---
+- name: Remove Azure VM
+  hosts: localhost
+  connection: local
+  vars:
+    - azure_vm_remove: true
+
+  roles:
+    - azure
