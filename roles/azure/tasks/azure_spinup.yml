@@ -5,7 +5,7 @@
     name: "{{ azure_vm_name }}Nic"
     virtual_network: "{{ azure_vnet_name }}"
     subnet: "{{ azure_subnet_name }}"
-    public_ip_name: "{{ azure_public_ip_name }}"
+    public_ip_name: "{{ azure_vm_name }}PublicIP"
     security_group: "{{ azure_security_group }}"
 
 - name: Create VM
