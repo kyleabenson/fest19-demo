@@ -10,6 +10,8 @@
       - path: /home/{{ azure_admin }}/.ssh/authorized_keys
         key_data: "{{ public_key }}"
     network_interfaces: "{{ azure_nic_name }}"
+    tag:
+      env: {{ azure_tag }}
     image:
       offer: CentOS
       publisher: OpenLogic
