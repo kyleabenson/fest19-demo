@@ -9,7 +9,7 @@
     ssh_public_keys:
       - path: /home/{{ azure_admin }}/.ssh/authorized_keys
         key_data: "{{ public_key }}"
-    network_interfaces: "{{ azure_nic_name }}"
+    network_interfaces: "{{ azure_vm_name }}Nic"
     tags:
       env: "{{ azure_tag }}"
     image:
