@@ -1,4 +1,8 @@
 ---
 gitRepo: https://github.com/kyleabenson/middlewareDemo.git
 deploymentPath: /home/ec2-user/middlewareDemo
-
+// These vars MUST BE POPULATED FOR THE PLAYBOOK TO RUN!
+db_host: 
+db_user: 
+db_pass: 
+db_database: 
