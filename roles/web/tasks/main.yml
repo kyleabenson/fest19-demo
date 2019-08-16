@@ -5,6 +5,7 @@
       - npm
       - nodejs
       - httpd
+      - git
     state: present
 
 - name: Clone web app git repo to location
@@ -18,8 +19,8 @@
   args:
     chdir: /home/ec2-user/frontendDemo
 
-- name: Build production binaries
-  command: npm run build
+- name: Build production binaries with temporary hardcoded express url
+  shell: "REACT_APP_EXPRESS_URL={{ express_server }} npm run build"
   args:
     chdir: /home/ec2-user/frontendDemo
 

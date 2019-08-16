@@ -1,0 +1,39 @@
+---
+- name: Install NodeJS packages
+  yum:
+    name:
+      - npm
+      - nodejs
+      - git
+    state: present
+
+- name: Install globally required npm packages 
+  npm:
+    name: pm2
+    state: present
+    global: yes
+
+- name: Install globally required npm packages 
+  npm:
+    name: babel-cli
+    ignore_scripts: yes
+    state: present
+    global: yes
+
+- name: Clone web app git repo to location
+  git:
+    repo: '{{ gitRepo }}'
+    dest: '{{ deploymentPath }}'
+    force: yes
+
+- name: Install node dependencies
+  command: npm install
+  args:
+    chdir: '{{ deploymentPath }}'
+
+- name: Start pm2 managed app
+  command: pm2 start index.js --interpreter babel-node -e js -f
+  args:
+    chdir: '{{ deploymentPath }}'
+
+  

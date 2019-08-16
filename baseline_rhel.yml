@@ -2,10 +2,14 @@
 - hosts: all
   become: yes
   vars: 
-    - web_deploy: true
+    - web_deploy: false
+    - mw_deploy: false
   tasks: 
     - include_role:
        name: common
     - include_role: 
        name: web
       when: web_deploy == true
+    - include_role:
+       name: middleware
+      when: mw_deploy == true

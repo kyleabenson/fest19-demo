@@ -1,0 +1,4 @@
+---
+gitRepo: https://github.com/kyleabenson/middlewareDemo.git
+deploymentPath: /home/ec2-user/middlewareDemo
+
