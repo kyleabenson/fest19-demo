@@ -1,0 +1,38 @@
+---
+- name: Create a MySQL instance in GCP
+  gcp_sql_instance:
+    name: "{{ db_name }}"
+    settings:
+      ip_configuration:
+        authorized_networks:
+        - name: interweb
+          value: 0.0.0.0/0
+      tier: db-n1-standard-1
+    region: us-central1
+    project: "{{ gcp_project }}"
+    auth_kind: serviceaccount
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present
+    database_version: MYSQL_5_7
+  register: instance
+
+- name: create a user
+  gcp_sql_user:
+    name: root
+    password: secret-password
+    instance: "{{ instance }}"
+    project: "{{ gcp_project }}"
+    host: ""
+    auth_kind: serviceaccount
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present
+
+- name: create a database
+  gcp_sql_database:
+    name: attendees
+    charset: utf8
+    instance: "{{ instance }}"
+    project: "{{ gcp_project }}"
+    auth_kind: serviceaccount
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present
