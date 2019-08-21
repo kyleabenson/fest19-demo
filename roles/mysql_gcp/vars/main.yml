@@ -3,4 +3,4 @@ gcp_project: ""
 gcp_cred_file: ""
 gcp_cred_kind: "serviceaccount"
 db_pass: test123
-db_name: test-db
+db_name: ""
