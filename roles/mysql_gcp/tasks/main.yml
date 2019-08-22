@@ -9,7 +9,7 @@
           value: 0.0.0.0/0
       tier: db-n1-standard-1
     region: us-central1
-    project: "{{ gcp_project }}"
+    project: ansible-fest
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
     state: present
@@ -21,7 +21,7 @@
     name: root
     password: secret-password
     instance: "{{ instance }}"
-    project: "{{ gcp_project }}"
+    project: ansible-fest
     host: ""
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
@@ -32,7 +32,7 @@
     name: attendees
     charset: utf8
     instance: "{{ instance }}"
-    project: "{{ gcp_project }}"
+    project: ansible-fest
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
     state: present
