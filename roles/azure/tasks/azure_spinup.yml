@@ -34,7 +34,7 @@
     tags:
       env: "{{ azure_tag }}"
     image:
-      offer: CentOS
-      publisher: OpenLogic
-      sku: '7.5'
+      offer: RHEL
+      publisher: RedHat
+      sku: '8.0'
       version: latest
