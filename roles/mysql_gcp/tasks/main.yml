@@ -14,7 +14,6 @@
     service_account_file: "{{ gcp_cred_file }}"
     state: present
     database_version: MYSQL_5_7
-    metadata: {}
   register: instance
 
 - name: create a user
@@ -27,7 +26,6 @@
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
     state: present
-     metadata: {}
 
 - name: create a database
   gcp_sql_database:
@@ -38,4 +36,3 @@
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
     state: present
-     metadata: {}
