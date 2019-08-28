@@ -20,7 +20,7 @@
   gcp_sql_user:
     name: "{{ db_user}}"
     password: "{{ db_pass }}"
-    instance: "{{ db_db }}"
+    instance: "{{ instance }}"
     project: "{{ gcp_project }}"
     host: "%"
     auth_kind: serviceaccount
