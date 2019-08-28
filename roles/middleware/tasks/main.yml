@@ -31,15 +31,27 @@
   args:
     chdir: '{{ deploymentPath }}'
 
-- name: Stop pm2 managed app
-  shell: pm2 stop all
-
 - name: Build node binaries
   command: npm run-script build
   args:
     chdir: '{{ deploymentPath }}'
 
+- name: Stop pm2 managed app
+  shell: pm2 stop all
+  ignore_errors: true
+  args:
+    chdir: '{{ deploymentPath }}'
+
+- name: Delete previous runs
+  shell: pm2 delete index
+  ignore_errors: true
+  args:
+    chdir: '{{ deploymentPath }}'
+
 - name: Start pm2 managed app
-  shell: " DB_HOST={{ db_host }} DB_USER={{ db_user}} DB_PASS={{db_pass}} DB_DB={{db_database}} pm2 start ./index.js"
+  shell: " DB_HOST='{{ db_host }}' DB_USER='{{ db_user}}' DB_PASS='{{db_pass}}' DB_DB='{{db_database}}' pm2 start ./index.js"
   args:
     chdir: '{{ deploymentPath }}/build'
+
+- debug:
+    msg: " DB_HOST='{{ db_host }}' DB_USER='{{ db_user}}' DB_PASS='{{db_pass}}' DB_DB='{{db_database}}' "

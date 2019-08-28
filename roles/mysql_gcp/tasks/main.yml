@@ -1,7 +1,7 @@
 ---
 - name: Create a MySQL instance in GCP
   gcp_sql_instance:
-    name: "{{ db_name }}"
+    name: "{{ db_db }}"
     settings:
       ip_configuration:
         authorized_networks:
@@ -9,7 +9,7 @@
           value: 0.0.0.0/0
       tier: db-n1-standard-1
     region: us-central1
-    project: ansible-fest
+    project: "{{ gcp_project }}"
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
     state: present
@@ -18,21 +18,33 @@
 
 - name: create a user
   gcp_sql_user:
-    name: root
-    password: secret-password
-    instance: "{{ instance }}"
-    project: ansible-fest
-    host: ""
+    name: "{{ db_user}}"
+    password: "{{ db_pass }}"
+    instance: "{{ db_db }}"
+    project: "{{ gcp_project }}"
+    host: "%"
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
     state: present
 
 - name: create a database
   gcp_sql_database:
-    name: attendees
+    name: "{{ db_db }}"
     charset: utf8
     instance: "{{ instance }}"
-    project: ansible-fest
+    project: "{{ gcp_project }}"
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
     state: present
+
+- set_fact:
+    db_host: "{{item.ipAddress}}"
+  with_items: "{{ instance.ipAddresses }}"
+  when: "{{ item.type == 'PRIMARY' }}"
+
+- set_stats:
+    data: 
+      db_host: "{{ db_host }}"
+
+- debug: 
+    msg: "{{db_host}}"

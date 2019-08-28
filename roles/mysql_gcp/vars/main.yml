@@ -2,5 +2,6 @@
 gcp_project: ""
 gcp_cred_file: ""
 gcp_cred_kind: "serviceaccount"
-db_pass: test123
-db_name: ""
+db_pass: ""
+db_db: ""
+db_user: ""
