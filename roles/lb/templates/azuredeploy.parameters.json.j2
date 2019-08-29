@@ -3,19 +3,19 @@
     "contentVersion": "7.0.0.2",
     "parameters": {
         "adminUsername": {
-            "value": "azureuser"
+            "value": "{{ f5_admin_user }}"
         },
         "authenticationType": {
             "value": "password"
         },
         "adminPasswordOrKey": {
-            "value": ""
+            "value": "{{ f5_admin_pass }}"
         },
         "dnsLabel": {
-            "value": ""
+            "value": "{{ f5_instance_dns_label }}"
         },
         "instanceName": {
-            "value": "f5vm01"
+            "value": "{{ f5_instance_name"
         },
         "instanceType": {
             "value": "Standard_DS2_v2"
