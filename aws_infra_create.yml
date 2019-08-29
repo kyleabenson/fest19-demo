@@ -21,5 +21,27 @@
             architecture: x86_64
             filter: 'RHEL-8.0.0_HVM-20190618-x86_64-1-Hourly2-GP2'
             username: ec2-user
-  roles:
-    - aws
+    tower_username: ""
+    tower_password: ""
+    tower_host: ""
+  tasks:
+    - name: Preflight check to ensure variables are defined
+      assert:
+        that:
+          - tower_username != ""
+          - tower_password != ""
+          - tower_host != ""
+
+    - include_role:
+       name: aws
+       
+    - name: Add Credential Into Tower
+      tower_credential:
+        name: AWS EC2 Demo Credential
+        ssh_key_data: "{{ playbook_dir }}/{{ec2_name_prefix}}/{{ec2_name_prefix}}-private.pem"
+        kind: ssh
+        organization: AnsibleFest demo organization
+        tower_username: ""
+        tower_password: ""
+        tower_host: ""
+        tower_verify_ssl: no
