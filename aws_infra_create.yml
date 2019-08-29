@@ -35,13 +35,13 @@
     - include_role:
        name: aws
        
-    - name: Add Credential Into Tower
-      tower_credential:
-        name: AWS EC2 Demo Credential
-        ssh_key_data: "{{ playbook_dir }}/{{ec2_name_prefix}}/{{ec2_name_prefix}}-private.pem"
-        kind: ssh
-        organization: AnsibleFest demo organization
-        tower_username: ""
-        tower_password: ""
-        tower_host: ""
-        tower_verify_ssl: no
+    # - name: Add Credential Into Tower
+    #   tower_credential:
+    #     name: AWS EC2 Demo Credential
+    #     ssh_key_data: "{{ playbook_dir }}/{{ec2_name_prefix}}/{{ec2_name_prefix}}-private.pem"
+    #     kind: ssh
+    #     organization: AnsibleFest demo organization
+    #     tower_username: ""
+    #     tower_password: ""
+    #     tower_host: ""
+    #     tower_verify_ssl: no
