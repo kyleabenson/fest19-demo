@@ -49,9 +49,9 @@
     chdir: '{{ deploymentPath }}'
 
 - name: Start pm2 managed app
-  shell: " DB_HOST='{{ db_host }}' DB_USER='{{ db_user}}' DB_PASS='{{db_pass}}' DB_DB='{{db_database}}' pm2 start ./index.js"
+  shell: " DB_HOST='{{ db_host }}' DB_USER='{{ db_user}}' DB_PASS='{{db_pass}}' DB_DB='{{db_db}}' pm2 start ./index.js"
   args:
     chdir: '{{ deploymentPath }}/build'
 
 - debug:
-    msg: " DB_HOST='{{ db_host }}' DB_USER='{{ db_user}}' DB_PASS='{{db_pass}}' DB_DB='{{db_database}}' "
+    msg: " DB_HOST='{{ db_host }}' DB_USER='{{ db_user}}' DB_PASS='{{db_pass}}' DB_DB='{{db_db}}' "
