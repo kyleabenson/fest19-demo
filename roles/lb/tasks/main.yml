@@ -1,0 +1,40 @@
+---
+- name: Deploy f5 VE payg
+  azure_rm_deployment:
+    resource_group: "{{ azure_resource_group }}"
+    name: "{{ azure_deployment_name }}"
+    client_id: "{{ azure_client_id }}"
+    secret: "{{ azure_secret }}"
+    tenant: "{{ azure_directory_id }}"
+    subscription_id: "{{ azure_subscription_id }}"
+    parameters:
+      adminUsername:
+        value: "{{ f5_admin_user }}"
+      authenticationType:
+        value: password
+      adminPasswordOrKey:
+        value: "{{ f5_admin_pass }}"
+      dnsLabel:
+        value: "{{ f5_instance_dns }}"
+      instanceName:
+        value: "{{ f5_instance_name }}"
+      instanceType:
+        value: Standard_DS2_v2
+      imageName:
+        value: Best1Gbps
+      bigIpVersion:
+        value: latest
+      bigIpModules:
+        value: ltm:nominal
+      vnetAddressPrefix:
+        value: "10.0"
+      declarationUrl:
+        value: NOT_SPECIFIED
+      ntpServer:
+        value: 0.pool.ntp.org
+      timeZone:
+        value: UTC
+      customImage:
+        value: OPTIONAL
+    template_link: 'https://raw.githubusercontent.com/kyleabenson/fest19-demo/master/roles/lb/templates/azuredeploy.json'
+

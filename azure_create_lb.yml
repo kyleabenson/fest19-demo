@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  vars:
+  - f5_admin_user: 
+  - f5_admin_pass: 
+  - f5_instance_name: 
+  - f5_instance_dns: 
+  - azure_deployment_name: 
+  - azure_resource_group: 
+  - azure_client_id: 
+  - azure_directory_id: 
+  - azure_subscription_id: 
+  - azure_secret: 
+
+  roles:
+  - lb
