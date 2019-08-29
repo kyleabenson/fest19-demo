@@ -1,2 +1,2 @@
 ---
-express_server: "http://3.15.163.244:5000/"
+express_server: "http://{{express_server}}:5000/"
