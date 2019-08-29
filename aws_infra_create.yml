@@ -1,0 +1,47 @@
+---
+- name: Create AWS
+  hosts: localhost
+  connection: local
+  vars:
+    aws_infra_build: true
+    ec2_name_prefix: fest-demo
+    ec2_region: us-east-2
+    ec2_wait: yes
+    ec2_az: "{{ec2_region}}a"
+    ec2_subnet: "172.16.0.0/16"
+    ec2_subnet2: "172.17.0.0/16"
+    ssh_port: 22
+    control_type: rhel8
+    ec2_info:
+        rhel8:
+            owners: 309956199498
+            size: t2.micro
+            os_type: linux
+            disk_space: 10
+            architecture: x86_64
+            filter: 'RHEL-8.0.0_HVM-20190618-x86_64-1-Hourly2-GP2'
+            username: ec2-user
+    tower_username: ""
+    tower_password: ""
+    tower_host: ""
+  tasks:
+    - name: Preflight check to ensure variables are defined
+      assert:
+        that:
+          - tower_username != ""
+          - tower_password != ""
+          - tower_host != ""
+
+    - include_role:
+       name: aws
+       
+    - name: Add Credential Into Tower
+      tower_credential:
+        name: AWS EC2 Demo Credential
+        ssh_key_data: "{{ playbook_dir }}/{{ec2_name_prefix}}/{{ec2_name_prefix}}-private.pem"
+        kind: ssh
+        organization: AnsibleFest demo organization
+        tower_username: ""
+        tower_password: ""
+        tower_host: ""
+        tower_verify_ssl: no

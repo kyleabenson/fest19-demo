@@ -1,7 +1,12 @@
 ---
 - hosts: localhost
-  vars:
-    ansible_python_interpreter: /var/lib/awx/venv/ansible/bin/python
   tasks: 
+    - name: Preflight check to ensure vars are defined
+      assert:
+        that:
+          - db_pass != ""
+          - db_db != ""
+          - db_user != ""
+
     - include_role:
        name: mysql_gcp
