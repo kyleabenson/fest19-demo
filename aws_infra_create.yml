@@ -25,12 +25,6 @@
     tower_password: ""
     tower_host: ""
   tasks:
-    - name: Preflight check to ensure variables are defined
-      assert:
-        that:
-          - tower_username != ""
-          - tower_password != ""
-          - tower_host != ""
 
     - include_role:
        name: aws

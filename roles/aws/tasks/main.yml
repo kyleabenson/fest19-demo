@@ -152,8 +152,7 @@
     dest: "{{ playbook_dir }}/{{ec2_name_prefix}}/{{ec2_name_prefix}}-private.pem"
     mode: '0400'
   when: create_key.changed
-
-
+  
 - name: find ami for ansible control node
   ec2_ami_facts:
     region: "{{ ec2_region }}"
@@ -167,6 +166,7 @@
   set_fact:
     ansible_control_node_ami: >
       {{ amis.images | selectattr('name', 'defined') | sort(attribute='creation_date') | last }}
+
 - name: Create EC2 instances for ansible node (control node)
   ec2:
     assign_public_ip: yes
@@ -207,3 +207,13 @@
       - "{{ ec2_name_prefix }}-key: {{ ec2_name_prefix }}-key"
       - "ec2_security_group: {{ ec2_security_group }}"
       - "ec2_vpc_subnet_id: {{ ec2_vpc_subnet_id }}"
+
+- set_fact:
+    express_server: "{{item.public_ip}}" 
+  with_items:
+    - "{{ control_output.instances | first }}"
+
+- set_stats:
+    data:
+      express_server: "{{ express_server }}"
+  
