@@ -26,7 +26,7 @@
     chdir: /home/ec2-user/frontendDemo
 
 - name: Build production binaries with temporary hardcoded express url
-  shell: "REACT_APP_EXPRESS_URL={{ express_server }} npm run build"
+  shell: "REACT_APP_EXPRESS_URL=http://{{ express_server }} npm run build"
   args:
     chdir: /home/ec2-user/frontendDemo
 
