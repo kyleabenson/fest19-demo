@@ -2,8 +2,9 @@
 - name: Disable firewalld for now
   service: 
     name: firewalld
-    status: stopped
+    state: stopped
     enabled: no
+
 - name: Install NodeJS and HTTPD packages
   yum:
     name:
