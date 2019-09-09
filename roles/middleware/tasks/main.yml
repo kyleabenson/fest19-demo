@@ -1,8 +1,8 @@
 ---
 - name: sleep for 300 seconds and continue with play
   wait_for:
-    timeout: 30
-  delegate_to: localhost
+    host: "{{ express_server }}"
+    port: 22
 
 - name: Install NodeJS packages
   yum:
