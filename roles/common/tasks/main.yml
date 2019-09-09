@@ -2,7 +2,7 @@
 - name: Install pip packages needed
   pip:
     name: firewalld
-    
+
 - name: Disable SELinux
   selinux:
     policy: targeted
@@ -12,3 +12,8 @@
     service: http
     permanent: yes
     state: enabled
+
+- firewalld:
+    port: 5000/tcp
+    permanent: yes
+    state: disabled
