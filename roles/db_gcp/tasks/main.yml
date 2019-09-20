@@ -1,5 +1,5 @@
 ---
-- name: Create a MySQL instance in GCP
+- name: Create a database in GCP
   gcp_sql_instance:
     name: "{{ db_db }}"
     settings:
@@ -7,15 +7,19 @@
         authorized_networks:
         - name: interweb
           value: 0.0.0.0/0
-      tier: db-n1-standard-1
-    region: us-central1
+      tier: db-g1-small
+    region: "{{ gcp_region }}"
     project: "{{ gcp_project }}"
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
-    state: present
-    database_version: MYSQL_5_7
+    state: "{{ db_state }}"
+    database_version: "{{ db_info[db_type].database_version }}"
+    backend_type: "{{ db_info[db_type].backend_type }}"
   register: instance
 
+- debug:
+    var: instance
+    
 - name: create a user
   gcp_sql_user:
     name: "{{ db_user}}"
