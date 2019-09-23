@@ -1,0 +1,21 @@
+---
+- name: create a user
+  gcp_sql_user:
+    name: "{{ db_user}}"
+    password: "{{ db_pass }}"
+    instance: "{{ instance }}"
+    project: "{{ gcp_project }}"
+    host: "%"
+    auth_kind: serviceaccount
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present
+
+- name: create a database
+  gcp_sql_database:
+    name: "{{ db_db }}"
+    charset: utf8
+    instance: "{{ instance }}"
+    project: "{{ gcp_project }}"
+    auth_kind: serviceaccount
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present

@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  tasks: 
+    - name: Preflight check to ensure vars are defined
+      assert:
+        that:
+          - db_pass != ""
+          - db_db != ""
+          - db_user != ""
+
+    - include_role:
+       name: db_gcp
+       tasks_from: config.yml

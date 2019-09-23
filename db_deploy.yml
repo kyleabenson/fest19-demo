@@ -17,12 +17,9 @@
     - name: Preflight check to ensure vars are defined
       assert:
         that:
-          - db_pass != ""
-          - db_db != ""
-          - db_user != ""
-          # - db_type == 'mysql' or 'postgres'
+          - db_type == 'mysql' or 'postgres'
           - db_provider != ""
-          # - db_state == 'present' or 'absent'
+          - db_state == 'present' or 'absent'
 
     - include_role:
        name: db_gcp
