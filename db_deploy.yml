@@ -14,15 +14,21 @@
         tier: db-g1-small
 
   tasks: 
-    - name: Preflight check to ensure vars are defined
+    - name: Preflight check to ensure spin up/down vars are defined
+      assert:
+        that:
+          - db_type == 'mysql' or 'postgres'
+          - db_provider == 'gcp' or 'aws'
+          - db_state == 'present' or 'absent'
+    
+    - name: Preflight check to ensure spin up/down vars are defined
       assert:
         that:
           - db_pass != ""
           - db_db != ""
           - db_user != ""
-          - db_type == 'mysql' or 'postgres'
-          - db_provider == 'gcp' or 'aws'
-          - db_state == 'present' or 'absent'
+      when: db_state == 'present'
+      
 
     - include_role:
        name: db_gcp
