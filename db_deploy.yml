@@ -7,7 +7,7 @@
       mysql:
         database_version: MYSQL_5_7
         backend_type: SECOND_GEN
-        tier: db-g1-small
+        tier: db-n1-standard-1
       postgres:
         database_version: POSTGRES_9_6
         backend_type: SECOND_GEN
@@ -20,9 +20,9 @@
           - db_pass != ""
           - db_db != ""
           - db_user != ""
-          - db_type == 'mysql' or 'postgres'
+          # - db_type == 'mysql' or 'postgres'
           - db_provider != ""
-          - db_state == 'present' or 'absent'
+          # - db_state == 'present' or 'absent'
 
     - include_role:
        name: db_gcp
