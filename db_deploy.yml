@@ -21,7 +21,7 @@
           - db_db != ""
           - db_user != ""
           - db_type == 'mysql' or 'postgres'
-          - db_provider != ""
+          - db_provider == 'gcp' or 'aws'
           - db_state == 'present' or 'absent'
 
     - include_role:
