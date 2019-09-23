@@ -16,9 +16,6 @@
     database_version: "{{ db_info[db_type].database_version }}"
     backend_type: "{{ db_info[db_type].backend_type }}"
   register: instance
-
-- debug:
-    var: instance
     
 - name: create a user
   gcp_sql_user:
