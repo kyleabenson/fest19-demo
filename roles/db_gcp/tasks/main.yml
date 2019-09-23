@@ -8,13 +8,13 @@
         - name: interweb
           value: 0.0.0.0/0
       tier: db-g1-small
-    region: "{{ gcp_region }}"
+    region: us-central1
     project: "{{ gcp_project }}"
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
-    state: "{{ db_state }}"
-    database_version: "{{ db_info[db_type].database_version }}"
-    backend_type: "{{ db_info[db_type].backend_type }}"
+    state: present
+    database_version: MYSQL_5_7
+    backend_type: db-n1-standard-1
   register: instance
     
 - name: create a user
