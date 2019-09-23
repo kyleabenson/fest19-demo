@@ -8,15 +8,36 @@
         - name: interweb
           value: 0.0.0.0/0
       tier: "{{ db_info[db_type].tier }}"
-    region: "{{ gcp_region }}"
+    region: us-central1
     project: "{{ gcp_project }}"
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
     state: "{{ db_state }}"
-    database_version: "{{ db_info[db_type].database_version }}"
+    database_version: MYSQL_5_7
     backend_type: "{{ db_info[db_type].backend_type }}"
   register: instance
     
+- name: create a user
+  gcp_sql_user:
+    name: "{{ db_user}}"
+    password: "{{ db_pass }}"
+    instance: "{{ instance }}"
+    project: "{{ gcp_project }}"
+    host: "%"
+    auth_kind: serviceaccount
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present
+
+- name: create a database
+  gcp_sql_database:
+    name: "{{ db_db }}"
+    charset: utf8
+    instance: "{{ instance }}"
+    project: "{{ gcp_project }}"
+    auth_kind: serviceaccount
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present
+
 - set_fact:
     db_host: "{{item.ipAddress}}"
   with_items: "{{ instance.ipAddresses }}"
@@ -25,14 +46,13 @@
 - set_stats:
     data: 
       db_host: "{{ db_host }}"
-      instance: "{{ instance }}"
-      # db_user: "{{ db_user }}"
-      # db_pass: "{{ db_pass }}"
+      db_user: "{{ db_user }}"
+      db_pass: "{{ db_pass }}"
 
 - debug: 
     msg: 
       - "You passed additional verbosity flags, so you must be troubleshooting. Here's some info:"
-      - "Instance: {{instance}}"
-      # - "Username: {{db_user}}"
-      # - "Password: {{db_pass}}"
+      - "Host: {{db_host}}"
+      - "Username: {{db_user}}"
+      - "Password: {{db_pass}}"
     verbosity: 2
