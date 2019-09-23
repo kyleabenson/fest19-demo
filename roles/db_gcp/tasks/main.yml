@@ -27,6 +27,7 @@
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
     state: present
+  when: db_state == 'present'
 
 - name: create a database
   gcp_sql_database:
@@ -37,6 +38,7 @@
     auth_kind: serviceaccount
     service_account_file: "{{ gcp_cred_file }}"
     state: present
+  when: db_state == 'present'
 
 - set_fact:
     db_host: "{{item.ipAddress}}"
