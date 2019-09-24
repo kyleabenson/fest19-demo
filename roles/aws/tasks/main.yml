@@ -176,8 +176,12 @@
     image: "{{ ansible_control_node_ami.image_id }}"
     region: "{{ ec2_region }}"
     exact_count: 1
+    instance_tags:
+      Fest_demo: "{{ec2_name_prefix}}-ansible"
+      FestDemo: "true"
     count_tag:
       Fest_demo: "{{ec2_name_prefix}}-ansible"
+      FestDemo: "true"
     wait: "{{ ec2_wait }}"
     vpc_subnet_id: "{{ ec2_vpc_subnet_id }}"
     volumes:
