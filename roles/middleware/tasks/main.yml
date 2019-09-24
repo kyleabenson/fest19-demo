@@ -38,15 +38,19 @@
 
 - name: Stop pm2 managed app
   shell: pm2 stop all
-  ignore_errors: true
+  ignore_errors: True
   args:
     chdir: '{{ deploymentPath }}'
+  register: pm2stop
+  failed_when: pm2stop.rc != 0
 
 - name: Delete previous runs
   shell: pm2 delete index
-  ignore_errors: true
+  ignore_errors: True
   args:
     chdir: '{{ deploymentPath }}'
+  register: pm2delete
+  failed_when: pm2delete.rc != 0
 
 - name: Start pm2 managed app
   shell: " DB_HOST='{{ db_host }}' DB_USER='{{ db_user}}' DB_PASS='{{db_pass}}' DB_DB='{{db_db}}' pm2 start ./index.js"
