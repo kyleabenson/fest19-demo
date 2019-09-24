@@ -179,8 +179,8 @@
     instance_tags:
       Fest_demo: "{{ec2_name_prefix}}-ansible"
       FestDemo: "true"
+      CreatedBy: "Kyle Benson"
     count_tag:
-      Fest_demo: "{{ec2_name_prefix}}-ansible"
       FestDemo: "true"
     wait: "{{ ec2_wait }}"
     vpc_subnet_id: "{{ ec2_vpc_subnet_id }}"
@@ -190,18 +190,6 @@
         volume_size: "{{ ec2_info[control_type].disk_space }}"
         delete_on_termination: true
   register: control_output
-
-- name: Ensure tags are present
-  ec2_tag:
-    region: "{{ ec2_region }}"
-    resource: "{{item.1}}"
-    state: present
-    tags:
-      FestDemo: "true"
-      CreatedBy: "Kyle Benson"
-  with_indexed_items:
-    - "{{ control_output.instance_ids }}"
-  when: control_output.instance_ids is not none
 
 - name: debugging all variables for ec2 instance creation VPC-1
   debug:
